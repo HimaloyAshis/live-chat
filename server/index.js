@@ -4,6 +4,8 @@ const cors = require('cors')
 const http = require('http')
 const { Server } = require('socket.io')
 
+
+app.use(cors())
 const server = http.createServer(app)
 
 const io = new Server(server, {
@@ -14,7 +16,7 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket)=>{
-    console.log(socket.id)
+    console.log(` user connected ${socket.id}`)
 
     socket.on('disconnection', ()=>{
         console.log("user disconnect", socket.id)
